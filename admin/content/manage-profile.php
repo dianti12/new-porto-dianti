@@ -28,7 +28,7 @@ if (isset($_POST['simpan'])) {
 
         if (!empty($photo)) {  //jika foto tidak kosong
 
-            
+
 
             // $fileName = uniqid() . "_" . basename($photo);
             // $filePath = "uploads/" . $fileName;
@@ -91,7 +91,8 @@ if (isset($_GET['del'])) {
     }
 }
 ?>
-<form action="" method="post" enctype="multipart/form-data">
+<!-- enctype  -->
+<form action="" method="POST" enctype="multipart/form-data">
     <div>
         <div class="mb-3">
             <label class="form-label">Judul</label>
