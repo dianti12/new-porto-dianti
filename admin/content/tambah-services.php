@@ -24,7 +24,7 @@ if (isset($_POST['edit'])) {
     $description = $_POST['description'];
 
 
-    $queryUpdate = mysqli_query($config, "UPDATE services SET photo='$photo', title='$title', description='$description' 
+    $queryUpdate = mysqli_query($config, "UPDATE services SET photo='$photo', title='$title', description='$description'
     WHERE id='$id_user'");
     if ($queryUpdate) {
         header("location:?page=services&ubah=berhasil");

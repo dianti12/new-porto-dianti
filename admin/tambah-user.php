@@ -76,16 +76,16 @@ if (isset($_POST['edit'])) {
                                     <li><a class="dropdown-item" href="#">Something else here</a></li>
                                 </ul>
                             </li>
-                            <?php
-                            $decrypt = base64_decode($_GET['level']);
-                            if (isset($_GET['level']) && $decrypt == 1) {
-                            ?>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="user.php">User</a>
-                                </li>
-                            <?php
-                            }
-                            ?>
+          <?php
+if (!empty($_GET['level']) && base64_decode($_GET['level']) == 1) {
+?>
+    <li class="nav-item">
+        <a class="nav-link" href="user.php">User</a>
+    </li>
+<?php
+}
+?>
+
 
                         </ul>
 

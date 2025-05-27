@@ -26,6 +26,7 @@ $id_level = isset($_SESSION['LEVEL']) ? $_SESSION['LEVEL'] : '';
                             <li><a class="dropdown-item" href="?page=manage-profile">Profile</a></li>
 
                             <li><a class="dropdown-item" href="?page=services">Services</a></li>
+                            <li><a class="dropdown-item" href="?page=testimonial">Testimonial</a></li>
                             <!-- jika level admin maka bisa dapat halaman user,
                             buikan admmin jangan atau hilang 
                             -->
@@ -65,7 +66,7 @@ $id_level = isset($_SESSION['LEVEL']) ? $_SESSION['LEVEL'] : '';
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <?php //echo $_name 
                             ?>
-                            <?php echo $_SESSION['NAME'] ?>
+                            <?php echo $_name ?>
 
                         </a>
                         <ul class="dropdown-menu">

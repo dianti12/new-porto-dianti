@@ -1,30 +1,49 @@
 <?php
+// Menghubungkan ke file konfigurasi database
 include 'admin/config/koneksi.php';
 
-// query profiles
+// Mengambil data dari tabel 'profiles', diurutkan dari yang terbaru (id DESC)
 $queryProfile = mysqli_query($config, "SELECT * FROM profiles ORDER BY id DESC");
+// Mengambil baris pertama hasil query (1 profile terbaru)
 $rowProfile   = mysqli_fetch_assoc($queryProfile);
 
+// Mengambil semua data dari tabel 'services', diurutkan dari yang terbaru
 $queryServices = mysqli_query($config, "SELECT * FROM services ORDER BY id DESC");
+// Mengambil semua baris hasil query sebagai array asosiatif
 $rowServices   = mysqli_fetch_all($queryServices, MYSQLI_ASSOC);
 
+// Mengambil semua data dari tabel 'categories', diurutkan dari yang terbaru
 $queryCategories = mysqli_query($config, "SELECT * FROM categories ORDER BY id DESC");
+// Mengambil semua baris hasil query sebagai array asosiatif
 $rowCategories   = mysqli_fetch_all($queryCategories, MYSQLI_ASSOC);
 
+// Mengambil semua data dari tabel 'portofolios', diurutkan dari yang terbaru
+$queryPorto = mysqli_query($config, "SELECT * FROM portofolios ORDER BY id DESC");
+// Mengambil semua baris hasil query sebagai array asosiatif
+$rowPorto = mysqli_fetch_all($queryPorto, MYSQLI_ASSOC);
+
+// Baris ini hanya digunakan untuk debug (menampilkan data dari query services) - dikomentari
 // print_r($rowServices['title']);
 // die;
+
+// Mengecek apakah form kontak dikirim (dengan tombol simpan ditekan)
 if (isset($_POST['simpan'])) {
+    // Mengambil data input dari form kontak
     $first_name = $_POST['first_name'];
     $last_name = $_POST['last_name'];
     $email = $_POST['email'];
     $subject = $_POST['subject'];
     $message = $_POST['message'];
 
+    // Menyimpan data kontak ke tabel 'contacts'
     $insertQ = mysqli_query($config, "INSERT INTO contacts (first_name, last_name, email, subject, message) VALUES ('$first_name', '$last_name', '$email', '$subject', '$message')");
+    
+    // Mengarahkan pengguna kembali ke index.php dengan pesan 'berhasil'
     header("location:index.php?contact=berhasil");
 }
 
 ?>
+
 <!doctype html>
 <html lang="en">
 
@@ -429,16 +448,37 @@ if (isset($_POST['simpan'])) {
                     </div>
                 </div>
 
-                <div class="row justify-content-center mb-5" data-aos="fade-up">
+               <div class="row justify-content-center mb-5" data-aos="fade-up">
                     <div id="filters" class="filters text-center button-group col-md-7">
                         <button class="btn btn-primary active" data-filter="*">All</button>
+
                         <?php foreach ($rowCategories as $category): ?>
-                        <button class="btn btn-primary" data-filter=".<?php echo $category['id'] ?>">
-                        <?php echo $category['id']  
-                        
+                            <button class="btn btn-primary" data-filter=".<?php echo $category['id'] ?>"><?php echo $category['name'] ?></button>
                         <?php endforeach ?>
 
-                        </button>
+                    </div>
+                </div>
+
+                <div id="posts" class="row no-gutter">
+
+                    <?php foreach ($rowPorto as $key => $porto): ?>
+
+                        <div class="item <?php echo $portco['id_category'] ?> col-sm-6 col-md-4 col-lg-4 col-xl-3 mb-4">
+
+                            <?php echo $porto['name_porto']; ?>
+                            <!-- <a href="images/img_1.jpg" class="item-wrap fancybox" data-fancybox="gallery2">
+
+                            <span class="icon-search2"></span>
+                            <img class="img-fluid" src="images/img_1.jpg">
+
+                            
+                        </a> -->
+                        </div>
+                    <?php endforeach ?>
+
+                </div>
+            </div>
+   
 
                         <button class="btn btn-primary" data-filter=".design">Design</button>
                         <button class="btn btn-primary" data-filter=".brand">Brand</button>
