@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 27, 2025 at 04:15 AM
+-- Generation Time: May 27, 2025 at 10:11 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -20,6 +20,17 @@ SET time_zone = "+00:00";
 --
 -- Database: `db_porto_2`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `categories`
+--
+
+CREATE TABLE `categories` (
+  `id` int(11) NOT NULL,
+  `name` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -67,6 +78,18 @@ INSERT INTO `levels` (`id`, `name_level`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `portofolios`
+--
+
+CREATE TABLE `portofolios` (
+  `id` int(11) NOT NULL,
+  `id_category` int(11) NOT NULL,
+  `name_porto` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `profiles`
 --
 
@@ -98,6 +121,18 @@ CREATE TABLE `services` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `services`
+--
+
+INSERT INTO `services` (`id`, `photo`, `title`, `description`, `created_at`, `updated_at`) VALUES
+(3, 'text-primary flaticon-startup', 'Business Consulting', 'dsfsdfsdfsdfsdfsdfsdfsd', '2025-05-27 06:42:21', NULL),
+(5, 'text-primary flaticon-graphic-design', 'ini design', 'sssssssssssssssssssssssssssssssssssasscc', '2025-05-27 06:44:09', NULL),
+(6, 'text-primary flaticon-graphic-design', 'cobainkslkhdhhb cnb jhbdjhasbd', 'vnbcsajbhjkasdjkhnasjkd', '2025-05-27 06:44:31', NULL),
+(7, 'text-primary flaticon-graphic-design', 'sadmjnjkdmas cmn nasbcas', 'cabndmghbjagdbhmabdjhbahjbcfhkbsjhkma', '2025-05-27 06:44:43', NULL),
+(8, 'text-primary flaticon-graphic-design', 'nbhsdvghbsvdgasvdbas bcv c', 'svnmbsdjhgasjudgajkhjkasxn', '2025-05-27 06:44:53', NULL),
+(9, 'text-primary flaticon-graphic-design', 'berubahahahahahaha', 'ishhdfsjhfjbsdfhbhf', '2025-05-27 07:09:37', '2025-05-27 07:37:21');
 
 -- --------------------------------------------------------
 
@@ -148,6 +183,18 @@ INSERT INTO `teams` (`id`, `name`, `position_name`, `photo`, `status`, `created_
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `testimonials`
+--
+
+CREATE TABLE `testimonials` (
+  `id` int(11) NOT NULL,
+  `judul_testimoni` varchar(50) NOT NULL,
+  `deskripsi_testimoni` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -168,12 +215,18 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `id_level`, `name`, `email`, `password`, `created_at`, `updated_at`, `deleted_at`) VALUES
 (1, 1, 'Reza123', 'admin@gmail.com', '7c222fb2927d828af22f592134e8932480637c0d', '2025-05-21 01:40:52', '2025-05-22 07:55:55', 0),
-(7, 2, 'Test', 'test@gmail.com', '7c222fb2927d828af22f592134e8932480637c0d', '2025-05-22 08:34:08', '2025-05-24 05:24:02', 0),
-(9, 1, 'hardianti', 'hardianti@gmail.com', 'd033e22ae348aeb5660fc2140aec35850c4da997', '2025-05-26 01:44:23', '2025-05-27 02:09:28', 0);
+(7, 2, 'Hardianti', 'hardianti@gmail.com', 'd033e22ae348aeb5660fc2140aec35850c4da997', '2025-05-22 08:34:08', '2025-05-27 03:59:12', 0),
+(9, 1, 'koala', 'koala@gmail.com', 'd033e22ae348aeb5660fc2140aec35850c4da997', '2025-05-26 01:44:23', '2025-05-27 03:58:48', 0);
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `categories`
+--
+ALTER TABLE `categories`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `contacts`
@@ -185,6 +238,12 @@ ALTER TABLE `contacts`
 -- Indexes for table `levels`
 --
 ALTER TABLE `levels`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `portofolios`
+--
+ALTER TABLE `portofolios`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -212,6 +271,12 @@ ALTER TABLE `teams`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `testimonials`
+--
+ALTER TABLE `testimonials`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -221,6 +286,12 @@ ALTER TABLE `users`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `categories`
+--
+ALTER TABLE `categories`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `contacts`
@@ -235,6 +306,12 @@ ALTER TABLE `levels`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `portofolios`
+--
+ALTER TABLE `portofolios`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `profiles`
 --
 ALTER TABLE `profiles`
@@ -244,7 +321,7 @@ ALTER TABLE `profiles`
 -- AUTO_INCREMENT for table `services`
 --
 ALTER TABLE `services`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `skills`
@@ -259,10 +336,16 @@ ALTER TABLE `teams`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `testimonials`
+--
+ALTER TABLE `testimonials`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Constraints for dumped tables

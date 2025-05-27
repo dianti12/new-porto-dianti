@@ -61,9 +61,11 @@ $rowLevels = mysqli_fetch_all($queryLevels, MYSQLI_ASSOC);
                 <option value="">Pilih Level</option>
                 <!-- data option ini diambil dari data table levels -->
                 <?php foreach ($rowLevels as $level) : ?>
-                    <option value="<?php echo $level['id'] ?>"><?php echo $level['name_level']  ?></option>
-                <?php endforeach ?>
-                <!-- endoption -->
+                    <!-- ini perintah edit -->
+                    <option <?php echo isset($_GET['edit']) ? ($level['id'] == $rowEdit['id_level']) ? 'selected' : '' : '' ?>
+                        value="<?php echo $level['id'] ?>"><?php echo $level['name_level']  ?></value=>
+                    <?php endforeach ?>
+                    <!-- endoption -->
             </select>
             <!-- <input type="radio" name="" id="">
             <input type="checkbox" name="" id=""> -->

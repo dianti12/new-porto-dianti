@@ -4,6 +4,15 @@ include 'admin/config/koneksi.php';
 // query profiles
 $queryProfile = mysqli_query($config, "SELECT * FROM profiles ORDER BY id DESC");
 $rowProfile   = mysqli_fetch_assoc($queryProfile);
+
+$queryServices = mysqli_query($config, "SELECT * FROM services ORDER BY id DESC");
+$rowServices   = mysqli_fetch_all($queryServices, MYSQLI_ASSOC);
+
+$queryCategories = mysqli_query($config, "SELECT * FROM categories ORDER BY id DESC");
+$rowCategories   = mysqli_fetch_all($queryCategories, MYSQLI_ASSOC);
+
+// print_r($rowServices['title']);
+// die;
 if (isset($_POST['simpan'])) {
     $first_name = $_POST['first_name'];
     $last_name = $_POST['last_name'];
@@ -423,7 +432,14 @@ if (isset($_POST['simpan'])) {
                 <div class="row justify-content-center mb-5" data-aos="fade-up">
                     <div id="filters" class="filters text-center button-group col-md-7">
                         <button class="btn btn-primary active" data-filter="*">All</button>
-                        <button class="btn btn-primary" data-filter=".web">Web</button>
+                        <?php foreach ($rowCategories as $category): ?>
+                        <button class="btn btn-primary" data-filter=".<?php echo $category['id'] ?>">
+                        <?php echo $category['id']  
+                        
+                        <?php endforeach ?>
+
+                        </button>
+
                         <button class="btn btn-primary" data-filter=".design">Design</button>
                         <button class="btn btn-primary" data-filter=".brand">Brand</button>
                     </div>
@@ -527,7 +543,7 @@ if (isset($_POST['simpan'])) {
 
         </section>
 
-
+        <!-- ini kode services -->
         <section class="site-section border-bottom bg-light" id="services-section">
             <div class="container">
                 <div class="row mb-5">
@@ -536,68 +552,20 @@ if (isset($_POST['simpan'])) {
                     </div>
                 </div>
                 <div class="row align-items-stretch">
-                    <div class="col-md-6 col-lg-4 mb-4 mb-lg-4" data-aos="fade-up">
-                        <div class="unit-4">
-                            <div class="unit-4-icon mr-4"><span class="text-primary flaticon-startup"></span></div>
-                            <div>
-                                <h3>Business Consulting</h3>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis quis molestiae vitae eligendi at.</p>
-                                <p><a href="#">Learn More</a></p>
+                    <!-- ini kode perulangan -->
+                    <?php foreach ($rowServices as $key => $value) { ?>
+                        <div class="col-md-6 col-lg-4 mb-4 mb-lg-4" data-aos="fade-up">
+                            <div class="unit-4">
+                                <div class="unit-4-icon mr-4"><span class="<?php echo $value['photo'] ?>"></span></div>
+                                <div>
+                                    <h3><?php echo $value['title'] ?></h3>
+                                    <p><?php echo $value['description'] ?></p>
+                                    <p><a href="#">Learn More</a></p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4 mb-4 mb-lg-4" data-aos="fade-up" data-aos-delay="100">
-                        <div class="unit-4">
-                            <div class="unit-4-icon mr-4"><span class="text-primary flaticon-graphic-design"></span></div>
-                            <div>
-                                <h3>Market Analysis</h3>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis quis molestiae vitae eligendi at.</p>
-                                <p><a href="#">Learn More</a></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4 mb-4 mb-lg-4" data-aos="fade-up" data-aos-delay="200">
-                        <div class="unit-4">
-                            <div class="unit-4-icon mr-4"><span class="text-primary flaticon-settings"></span></div>
-                            <div>
-                                <h3>User Monitoring</h3>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis quis molestiae vitae eligendi at.</p>
-                                <p><a href="#">Learn More</a></p>
-                            </div>
-                        </div>
-                    </div>
+                    <?php }  ?>
 
-
-                    <div class="col-md-6 col-lg-4 mb-4 mb-lg-4" data-aos="fade-up" data-aos-delay="">
-                        <div class="unit-4">
-                            <div class="unit-4-icon mr-4"><span class="text-primary flaticon-idea"></span></div>
-                            <div>
-                                <h3>Insurance Consulting</h3>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis quis molestiae vitae eligendi at.</p>
-                                <p><a href="#">Learn More</a></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4 mb-4 mb-lg-4" data-aos="fade-up" data-aos-delay="100">
-                        <div class="unit-4">
-                            <div class="unit-4-icon mr-4"><span class="text-primary flaticon-smartphone"></span></div>
-                            <div>
-                                <h3>Financial Investment</h3>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis quis molestiae vitae eligendi at.</p>
-                                <p><a href="#">Learn More</a></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4 mb-4 mb-lg-4" data-aos="fade-up" data-aos-delay="200">
-                        <div class="unit-4">
-                            <div class="unit-4-icon mr-4"><span class="text-primary flaticon-head"></span></div>
-                            <div>
-                                <h3>Financial Management</h3>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis quis molestiae vitae eligendi at.</p>
-                                <p><a href="#">Learn More</a></p>
-                            </div>
-                        </div>
-                    </div>
 
                 </div>
             </div>

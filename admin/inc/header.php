@@ -24,6 +24,8 @@ $id_level = isset($_SESSION['LEVEL']) ? $_SESSION['LEVEL'] : '';
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="?page=team">Team</a></li>
                             <li><a class="dropdown-item" href="?page=manage-profile">Profile</a></li>
+
+                            <li><a class="dropdown-item" href="?page=services">Services</a></li>
                             <!-- jika level admin maka bisa dapat halaman user,
                             buikan admmin jangan atau hilang 
                             -->
